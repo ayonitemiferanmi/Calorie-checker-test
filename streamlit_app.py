@@ -15,7 +15,7 @@ def app():
     st.header('Object Detection Web App')
     st.subheader('Powered by YOLOv10')
     st.write('Welcome!')
-    model_path = 'best.pt'
+    model_path = 'https://github.com/ayonitemiferanmi/Calorie-checker-test/blob/main/best.pt'
     model = YOLO(model_path, task='detect', )
     #object_names = list(model.names.values())
 
