@@ -1,4 +1,6 @@
 opencv-python
 streamlit
 numpy  
-pillow  
+pillow 
+ultralytics
+matplotlib
