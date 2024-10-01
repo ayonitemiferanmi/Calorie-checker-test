@@ -5,7 +5,6 @@ Created on Tue Oct  1 09:32:16 2024
 @author: Feranmi Ayonitemi
 """
 
-import cv2
 import streamlit as st
 from ultralytics import YOLO
 from PIL import Image, ImageOps
