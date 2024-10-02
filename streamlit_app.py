@@ -40,7 +40,7 @@ def app():
         download_model_from_huggingface(hf_model_url, model_path)
 
     # Load the YOLO model
-    model = YOLO(model_path_2, task='detect')
+    model = YOLO(model_path, task='detect')
     # Alternatively, you can load it with PyTorch if needed:
     #model = torch.load(model_path, map_location="cpu")
 
