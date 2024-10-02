@@ -7,3 +7,4 @@ matplotlib
 torch
 requests
 git+https://github.com/THU-MIG/yolov10.git
+huggingface_hub
