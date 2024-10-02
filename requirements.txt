@@ -1,9 +1,8 @@
-topencv-python
+opencv-python
 streamlit
 numpy  
 pillow 
 ultralytics
 matplotlib
-gdown
 torch
 requests
