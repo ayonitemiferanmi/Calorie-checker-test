@@ -28,17 +28,19 @@ def app():
 
     # HuggingFace URL
     hf_model_url = "https://huggingface.co/Ayonitemi-Feranmi/calorie_tester/resolve/main/best.pt"
+    hf_model_url_2 = "https://huggingface.co/Ayonitemi-Feranmi/calorie_tester/resolve/main/yolov10n.pt"
     model_path = "best.pt"
+    model_path_2 = "yolov10n.pt"
 
     # Download model if not already available
     try:
-        with open(model_path, 'rb') as f:
+        with open(model_path_2, 'rb') as f:
             st.write("Model found!")
     except FileNotFoundError:
         download_model_from_huggingface(hf_model_url, model_path)
 
     # Load the YOLO model
-    model = YOLO(model_path, task='detect')
+    model = YOLO(model_path_2, task='detect')
     # Alternatively, you can load it with PyTorch if needed:
     #model = torch.load(model_path, map_location="cpu")
 
