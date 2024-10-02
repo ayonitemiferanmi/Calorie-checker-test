@@ -12,6 +12,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import torch
 import requests
+from ultralytics import YOLOv10
 
 def download_model_from_huggingface(output_path):
     st.write("DOwnloading Model from Huggingface...")
@@ -40,7 +41,7 @@ def app():
         download_model_from_huggingface(hf_model_url, model_path)
 
     # Load the YOLO model
-    model = YOLO(model_path, task='detect')
+    model = YOLOv10(model_path, task='detect')
     # Alternatively, you can load it with PyTorch if needed:
     #model = torch.load(model_path, map_location="cpu")
 
