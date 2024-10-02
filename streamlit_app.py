@@ -5,19 +5,41 @@ Created on Tue Oct  1 09:32:16 2024
 @author: Feranmi Ayonitemi
 """
 
+import gdown
 import streamlit as st
 from ultralytics import YOLO
 from PIL import Image, ImageOps
 import numpy as np
 import matplotlib.pyplot as plt
+import torch
+
+def download_model_from_drive(drive_file_id, output_path):
+    # Construct the download URL
+    download_url = f"https://drive.google.com/uc?id={drive_file_id}"
+    
+    # Download the model file from Google Drive
+    gdown.download(download_url, output_path, quiet=False)
+
+# Specify the file ID of your model on Google Drive
+drive_file_id = "1qfoGhColz3QXmvebIIYLSjMdWGrtAFXe"
+
+# Path where the model will be saved locally
+output_path = "best.pt"
+
+# Download the model
+download_model_from_drive(drive_file_id, output_path)
+
+# Load the model with Ultralytics YOLO
+#model = YOLO(output_path, task='detect')
 
 def app():
     st.header('Object Detection Web App')
     st.subheader('Powered by YOLOv10')
     st.write('Welcome!')
-    model_path = 'https://github.com/ayonitemiferanmi/Calorie-checker-test/blob/main/best.pt'
-    model = YOLO(model_path, task='detect', )
-    #object_names = list(model.names.values())
+    #model_path = 'https://github.com/ayonitemiferanmi/Calorie-checker-test/blob/main/best.pt'
+    model = YOLO(output_path, task='detect')
+    # Alternatively, you can load it with PyTorch if needed:
+    # model = torch.load(output_path, map_location="cpu")
 
     with st.form("my_form"):
         uploaded_file = st.file_uploader("Upload Image", type=['jpg', 'jpeg', 'png'])
