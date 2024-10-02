@@ -64,10 +64,10 @@ def app():
         
         # Convert back to PIL image to display with Streamlit
         result_image_pil = Image.fromarray(results[0].orig_img)
-        st.write(result_image_pil)
+        #st.write(result_image_pil)
         
         # Display the output
-        results[0].show()#save=True, filename='eba_res.png', conf=True)
+        #results[0].show()#save=True, filename='eba_res.png', conf=True)
         st.image(results[0].plot(), caption="Detected Objects", use_column_width=True)
         #st.image(read_img, use_column_width=True)
 if __name__ == "__main__":
