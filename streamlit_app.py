@@ -34,13 +34,13 @@ def app():
 
     # Download model if not already available
     try:
-        with open(model_path, 'rb') as f:
+        with open(model_path_2, 'rb') as f:
             st.write("Model found!")
     except FileNotFoundError:
-        download_model_from_huggingface(hf_model_url, model_path)
+        download_model_from_huggingface(hf_model_url, model_path_2)
 
     # Load the YOLO model
-    model = YOLO(model_path, task='detect')
+    model = YOLO(model_path_2,)# task='detect')
     # Alternatively, you can load it with PyTorch if needed:
     #model = torch.load(model_path, map_location="cpu")
 
