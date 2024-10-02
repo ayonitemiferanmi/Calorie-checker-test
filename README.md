@@ -1,3 +1,5 @@
+**Object Detection Web App**
+
 This webapp is to check how a custom trained YOLOv10 objectection model performs. 
 It works by uploading any food image then the model detects the classes of food in the image.
 
