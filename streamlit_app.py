@@ -12,31 +12,33 @@ from PIL import Image, ImageOps
 import numpy as np
 import matplotlib.pyplot as plt
 import torch
+import requests
 
-def download_model_from_drive(drive_file_id, output_path):
-    # Construct the download URL
-    download_url = f"https://drive.google.com/uc?id={drive_file_id}"
+def download_model_from_huggingface(output_path):
+    st.write("DOwnloading Model from Huggingface...")
+    response = requests.get(url)
     
-    # Download the model file from Google Drive
-    gdown.download(download_url, output_path, quiet=False)
-
-# Specify the file ID of your model on Google Drive
-drive_file_id = "1qfoGhColz3QXmvebIIYLSjMdWGrtAFXe"
-
-# Path where the model will be saved locally
-output_path = "best.pt"
-
-# Download the model
-download_model_from_drive(drive_file_id, output_path)
-
-# Load the model with Ultralytics YOLO
-#model = YOLO(output_path, task='detect')
+    with open(output_path, "wb") as file:
+        file.write(response.content)
+    st.write("Model downloaded successfully")
 
 def app():
     st.header('Object Detection Web App')
     st.subheader('Powered by YOLOv10')
     st.write('Welcome!')
-    #model_path = 'https://github.com/ayonitemiferanmi/Calorie-checker-test/blob/main/best.pt'
+
+    # HuggingFace URL
+    hf_model_url = "https://huggingface.co/Ayonitemi-Feranmi/calorie_tester/resolve/main/best.pt"
+    model_path = "best.pt"
+
+    # Download model if not already available
+    try:
+        with open(model_path, 'rb') as f:
+            st.write("Model found!")
+    except FileNotFoundError:
+        download_model_from_huggingface(hf_model_url, model_path)
+
+    # Load the YOLO model
     model = YOLO(output_path, task='detect')
     # Alternatively, you can load it with PyTorch if needed:
     # model = torch.load(output_path, map_location="cpu")
@@ -67,7 +69,7 @@ def app():
         
         # Display the output
         results[0].show()#save=True, filename='eba_res.png', conf=True)
-        #st.image(results[0].show(), caption="Detected Objects", use_column_width=True)
+        st.image(results[0].plot(), caption="Detected Objects", use_column_width=True)
         #st.image(read_img, use_column_width=True)
 if __name__ == "__main__":
     app()
