@@ -11,12 +11,17 @@ from PIL import Image
 import numpy as np
 from ultralytics import YOLOv10
 import io
+import requests
 
 app = FastAPI()
 
+temp_file = requests.get("https://huggingface.co/Ayonitemi-Feranmi/calorie_tester/resolve/main/best.pt")
+with open(model_path_1, "wb") as f:
+    f.write(temp_file.content)
+
 # Load the YOLO model (you can also include logic to download it from Hugging Face if not available)
 model_path = "best.pt"
-model = YOLOv10(model_path, task='detect')
+model = YOLOv10(model_path_1, task='detect')
 
 @app.get("/")
 def hello():
