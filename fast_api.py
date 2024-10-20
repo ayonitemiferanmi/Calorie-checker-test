@@ -16,6 +16,7 @@ import requests
 app = FastAPI()
 
 temp_file = requests.get("https://huggingface.co/Ayonitemi-Feranmi/calorie_tester/resolve/main/best.pt")
+model_path_1 = None
 with open(model_path_1, "wb") as f:
     f.write(temp_file.content)
 
