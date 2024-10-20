@@ -18,6 +18,10 @@ app = FastAPI()
 model_path = "best.pt"
 model = YOLOv10(model_path, task='detect')
 
+@app.get("/")
+def hello():
+    return "Welcome to this fastapi"
+
 @app.post("/detect/")
 async def detect_objects(file: UploadFile = File(...), confidence: float = 0.05):
     # Read the uploaded image file
