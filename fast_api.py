@@ -22,7 +22,7 @@ app = FastAPI()
 
 # Load the YOLO model (you can also include logic to download it from Hugging Face if not available)
 model_path = "best.pt"
-model = YOLOv10(model_path_1, task='detect')
+model = YOLOv10(model_path, task='detect')
 
 @app.get("/")
 def hello():
