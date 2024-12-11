@@ -2,7 +2,7 @@ opencv-python
 streamlit
 numpy  
 pillow 
-ultralytics
+ultralytics == 8.3.36
 matplotlib
 #torch
 requests
