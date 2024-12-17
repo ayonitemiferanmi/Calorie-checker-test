@@ -16,5 +16,5 @@ fastapi
 pillow
 numpy
 ultralytics
-io
+Python-IO
 requests
